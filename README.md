@@ -1,8 +1,8 @@
 
 #Connect with Me:
 * GitHub: [NOX069](https://github.com/nox069)
-
-* LinkedIn: imshohan1x2@gmail.com
+* Mail: imshohan1x2@gmail.com
+* LinkedIn: https://www.linkedin.com/in/toorikul/
 
 # STM32-HMC5883L-HAL-Enhanced-Precise-Calibration
 # HMC5883L STM32 HAL Library with Calibration

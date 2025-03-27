@@ -1,6 +1,6 @@
 
 #Connect with Me:
-* GitHub: [YourGitHubProfile](https://github.com/nox069)
+* GitHub: [NOX069](https://github.com/nox069)
 
 * LinkedIn: imshohan1x2@gmail.com
 

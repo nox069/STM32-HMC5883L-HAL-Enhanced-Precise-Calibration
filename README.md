@@ -1,3 +1,9 @@
+
+#Connect with Me:
+* GitHub: [YourGitHubProfile](https://github.com/nox069)
+
+* LinkedIn: imshohan1x2@gmail.com
+
 # STM32-HMC5883L-HAL-Enhanced-Precise-Calibration
 # HMC5883L STM32 HAL Library with Calibration
 
@@ -40,33 +46,27 @@ This is an **STM32 HAL-based driver** for the **HMC5883L 3-axis digital magnetom
 ### **1. Initialize the Sensor**
 ```c
 HMC5883L mag;
-HMC5883L_Init(&mag, &hi2c1, GAIN_1090);
-```
-
-### **2. Read Raw Data**
-```c
-int16_t raw_data[3];
-HMC5883L_ReadRaw(&mag, raw_data);
-printf("Raw X: %d, Y: %d, Z: %d\n", raw_data[0], raw_data[1], raw_data[2]);
-```
-
-### **3. Perform Calibration**
-```c
-HMC5883L_Calibrate(&mag, 500);
-printf("Calibration done! Offsets: X=%d, Y=%d, Z=%d\n", mag.mag_offset[0], mag.mag_offset[1], mag.mag_offset[2]);
-```
-
-### **4. Read Calibrated Data**
-```c
 MagnetometerData data;
-HMC5883L_ReadCalibrated(&mag, &data);
-printf("Calibrated X: %.2f, Y: %.2f, Z: %.2f\n", data.x, data.y, data.z);
+
+HMC5883L_Init(&mag, &hi2c1, GAIN_1090);
+HMC5883L_SetDeclination(&mag, -2.5f);
+HMC5883L_Calibrate(&mag, 300);
+
 ```
 
-### **5. Compute Heading**
+
+### **2. Inside While loop**
 ```c
-float heading = HMC5883L_GetHeading(&mag, &data);
-printf("Heading: %.2f degrees\n", heading);
+While(1)
+{
+   if(HMC5883L_ReadCalibrated(&mag, &data) == HAL_OK) 
+       {
+            float heading = HMC5883L_GetHeading(&mag, &data);
+            printf("X: %.2f µT\tY: %.2f µT\tZ: %.2f µT\tHeading: %.2f°\n",
+                   data.x, data.y, data.z, heading);
+       }
+       HAL_Delay(68);
+}
 ```
 
 ## Calibration Guide
@@ -79,12 +79,7 @@ printf("Heading: %.2f degrees\n", heading);
 - The **Z and Y axes are swapped** due to HMC5883L's internal orientation.
 - The **STM32 HAL library is required** for I2C communication.
 
-## License
-This project is open-source under the **MIT License**.
-
 ## Contributions
 Feel free to contribute by submitting issues and pull requests!
 
----
 Enjoy coding with STM32 and HMC5883L! 🚀
-

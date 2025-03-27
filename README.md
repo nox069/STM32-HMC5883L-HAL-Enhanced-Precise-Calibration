@@ -5,7 +5,6 @@
 * LinkedIn: https://www.linkedin.com/in/toorikul/
 
 # STM32-HMC5883L-HAL-Enhanced-Precise-Calibration
-# HMC5883L STM32 HAL Library with Calibration
 
 ## Overview
 This is an **STM32 HAL-based driver** for the **HMC5883L 3-axis digital magnetometer**. The library provides functions for initializing the sensor, reading raw and calibrated data, performing calibration, and computing heading direction with **declination angle compensation**.
